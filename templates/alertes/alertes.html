@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% load bootstrap_tags %}
+
+{% block content %}
+
+    <div class="container mt-4">
+        <div class="row">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-3"></div>
+          <div class="col-sm-4"></div>
+          <div class="border">
+            <a class="btn btn-md btn-outline-primary" href="{% url 'add_alert' %}">Ajouter Alerte </a></div>
+        </div>
+        <table class="table">
+          <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Message</th>
+                <th scope="col">asset_id</th>
+                <th scope="col">min_value</th>
+                <th scope="col">max_value</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+          </thead>
+          <tbody>
+                {% if alerts_list %}
+                    {% for alert in alerts_list %}
+                        <tr>
+                            <td></td>
+                            <td>{{ alert.user.username }}</td>
+                            <td>{{ alert.user.email }}</td>
+                            <td>{{ alert.message }}</td>
+                            <td>{{ alert.asset_id }}</td>
+                            <td>{{ alert.min_value }}</td>
+                            <td>{{ alert.max_value }}</td>
+                            <td class="text-center edit-block">
+
+                              <span class="edit">
+                                <a href="/alerts/update/{{alert.pk}}" class="btn btn-warning btn-sm">Edit</a>
+                              </span>
+                              <span class="delete">
+                                <a href="/alerts/delete/{{alert.pk}}" class="btn btn-danger btn-sm">Delete</a>
+                              </span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                <p>No Alert defined.</p>
+                {% endif %}
+          </tbody>
+
+        </table>
+
+</div>
+
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="email">Email: </label>
+          <input type="text" class="form-control" id="email" formControlName="email" name="email">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="age">Age</label>
+          <input type="number" class="form-control" id="age" formControlName="age" name="age">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="race">Race</label>
+          <input type="text" class="form-control" id="race" formControlName="race" name="race">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="famille">Famille</label>
+          <input type="text" class="form-control" id="famille" formControlName="famille" name="famille">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="nourriture">Nourriture</label>
+          <input type="text" class="form-control" id="nourriture" formControlName="nourriture" name="nourriture">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="username">Username: </label>
+          <input type="text" class="form-control" id="username" formControlName="username" name="username">
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="password">Password: </label>
+          <input type="password" class="form-control" id="password" [(ngModel)]="pangolain.password" formControlName="password" name="password">
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-success btn-lg btn-block" type="submit">Add Friend</button>
+      </div>
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
